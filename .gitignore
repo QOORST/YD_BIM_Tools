@@ -1,0 +1,43 @@
+# Build results
+bin/
+obj/
+Output/
+Installer/2024/
+Installer/2025/
+Installer/2026/
+Installer/Resources/
+Installer/*.dll
+Installer/*.txt
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# User-specific files
+*.rsuser
+
+# Logs
+*.log
+LOG/
+
+# Temporary files
+*.tmp
+*.temp
+
+# NuGet Packages
+*.nupkg
+packages/
+
+# Test Results
+TestResults/
+
+# Build Tools
+.nuget/
+

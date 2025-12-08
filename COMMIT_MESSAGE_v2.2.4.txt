@@ -1,0 +1,33 @@
+Release v2.2.4 - 修復 Revit 2025/2026 COBie 參數建立問題
+
+## 主要修復
+
+1. 修復 Revit 2025/2026 中 COBie 參數建立失敗
+   - 問題：BuiltInParameterGroup 類型在 Revit 2025 已完全移除
+   - 解決：完全使用反射處理舊版 API，避免編譯時期類型載入錯誤
+   - 檔案：Helpers/Data/ParamTypeCompat.cs
+
+2. 修復 COBie 匯入資料寫入錯誤參數
+   - 確保資料寫入共用參數而非內建參數
+
+## 技術改進
+
+- 優化 ParamTypeCompat.InsertBinding 方法
+  - 優先使用新版 API (GroupTypeId.Data)
+  - 自動回退到舊版 API (BuiltInParameterGroup)
+  - 增強方法簽章檢測邏輯
+  
+- 清理診斷訊息輸出
+
+## 測試
+
+- ✅ Revit 2024 - COBie 參數建立成功
+- ✅ Revit 2025 - COBie 參數建立成功
+- ✅ Revit 2026 - COBie 參數建立成功
+
+## 檔案變更
+
+- Modified: Helpers/Data/ParamTypeCompat.cs
+- Added: RELEASE_NOTES_v2.2.4.md
+- Added: GITHUB_RELEASE_GUIDE.md
+

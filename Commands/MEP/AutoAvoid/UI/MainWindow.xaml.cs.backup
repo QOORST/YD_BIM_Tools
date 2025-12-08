@@ -1,0 +1,43 @@
+using System.Windows;
+using System.Linq;
+using AR_AutoAvoidRouting.Core;
+
+namespace AR_AutoAvoidRouting.UI
+{
+    public partial class MainWindow : Window
+    {
+        public AvoidOptions Options { get; private set; } = new AvoidOptions();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            this.DataContext = Options;
+        }
+
+        public void SetInfo(int targetCount, int obstacleCount)
+        {
+            this.Title = $"步驟 3/3: 設定避讓參數 - 已選取 {targetCount} 條管線, {obstacleCount} 個額外障礙物";
+        }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            // 驗證輸入參數
+            var (isValid, errors) = Options.Validate();
+            if (!isValid)
+            {
+                string errorMsg = "參數驗證失敗:\n\n" + string.Join("\n", errors);
+                MessageBox.Show(errorMsg, "參數錯誤", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            this.Close();
+        }
+    }
+}
